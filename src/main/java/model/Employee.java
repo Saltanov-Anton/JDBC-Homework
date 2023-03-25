@@ -1,91 +1,25 @@
 package model;
 
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Employee {
 
     private int id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String gender;
     private int age;
-    private int City_id;
+    private Integer cityId;
 
-    public Employee(int id, String first_name, String last_name, String gender, int age, int city_id) {
-        this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(String firstName, String lastName, String gender, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        City_id = city_id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getCity_id() {
-        return City_id;
-    }
-
-    public void setCity_id(int city_id) {
-        City_id = city_id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && City_id == employee.City_id && Objects.equals(first_name, employee.first_name) && Objects.equals(last_name, employee.last_name) && Objects.equals(gender, employee.gender);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, first_name, last_name, gender, age, City_id);
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", City_id=" + City_id +
-                '}';
     }
 }
