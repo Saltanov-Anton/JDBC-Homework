@@ -1,5 +1,4 @@
-import DAO.EmployeeDAO;
-import DAO.EmployeeDAOImpl;
+import DAO.EmployeeHibernateDAOImpl;
 import model.Employee;
 
 import java.sql.*;
@@ -8,51 +7,30 @@ public class Application {
 
 
     public static void main(String[] args) {
-        try(final Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM employee WHERE id = (?)")) {
-            preparedStatement.setInt(1, 2);
-            ResultSet resultSet = preparedStatement.executeQuery();
+        taskWithHibernate();
 
-            Employee employee = new Employee();
+    }
 
-            while (resultSet.next()){
-                employee.setId(resultSet.getInt("id"));
-                employee.setFirstName(resultSet.getString("first_name"));
-                employee.setLastName(resultSet.getString("last_name"));
-                employee.setGender(resultSet.getString("gender"));
-                employee.setAge(Integer.parseInt(resultSet.getString("age")));
-                employee.setCityId(resultSet.getInt("city"));
-                System.out.println(employee);
+    private static void taskWithHibernate() {
+        EmployeeHibernateDAOImpl employeeDAO = new EmployeeHibernateDAOImpl();
 
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        employeeDAO.saveEmployee(new Employee("Tolya", "Ivanov", "m", 44));
 
-        try (final Connection connection = getConnection()) {
-            EmployeeDAO employeeDAO = new EmployeeDAOImpl();
-            employeeDAO.saveEmployee(connection, new Employee("Vasya", "Obama", "m", 21));
+        employeeDAO.getAllEmployee().forEach(System.out::println);
 
-            employeeDAO.getAllEmployee(connection).forEach(System.out::println);
+        Employee employee = employeeDAO.getEmployeeById(8);
+        System.out.println(employee);
 
-            System.out.println(employeeDAO.getEmployeeById(connection, 7));
+        employeeDAO.editEmployeeById(employee);
 
-            Employee employee = employeeDAO.getEmployeeById(connection, 7);
-            employee.setFirstName("New name");
-            employeeDAO.editEmployeeById(connection, employee, 7);
+        employeeDAO.getAllEmployee().forEach(System.out::println);
 
-            System.out.println(employeeDAO.getEmployeeById(connection, 7));
+        employeeDAO.deleteEmployee(employee);
 
-            System.out.println(employeeDAO.getAllEmployee(connection));
+        employeeDAO.getAllEmployee().forEach(System.out::println);
 
-            employeeDAO.deleteEmployeeById(connection, 7);
 
-            System.out.println(employeeDAO.getAllEmployee(connection));
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private static Connection getConnection() {

@@ -1,47 +1,21 @@
 package model;
 
-import java.util.Objects;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table
 public class City {
 
-    private int city_id;
-    private String city_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cityId;
 
-    public City(int city_id, String city_name) {
-        this.city_id = city_id;
-        this.city_name = city_name;
-    }
-
-    public int getCity_id() {
-        return city_id;
-    }
-
-    public String getCity_name() {
-        return city_name;
-    }
-
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        City city = (City) o;
-        return city_id == city.city_id && Objects.equals(city_name, city.city_name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(city_id, city_name);
-    }
-
-    @Override
-    public String toString() {
-        return "City{" +
-                "city_id=" + city_id +
-                ", city_name='" + city_name + '\'' +
-                '}';
-    }
+    @Column
+    private String cityName;
 }

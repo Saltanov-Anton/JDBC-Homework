@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface EmployeeDAO {
 
-    void saveEmployee(Connection connection, Employee employee);
+    void saveEmployee(Employee employee);
 
-    Employee getEmployeeById(Connection connection, int id);
+    Employee getEmployeeById(int id);
 
-    List<Employee> getAllEmployee(Connection connection);
+    List<Employee> getAllEmployee();
 
-    Employee editEmployeeById(Connection connection, Employee employee, int id);
+    void editEmployeeById(Employee employee);
 
-    void deleteEmployeeById(Connection connection, int id);
+    void deleteEmployee(Employee employee);
 }
