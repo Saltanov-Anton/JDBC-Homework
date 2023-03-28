@@ -28,9 +28,6 @@ public class Application {
         employeeDAO.deleteEmployee(employee);
 
         employeeDAO.getAllEmployee().forEach(System.out::println);
-
-
-
     }
 
     private static Connection getConnection() {
