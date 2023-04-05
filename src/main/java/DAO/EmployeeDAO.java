@@ -2,7 +2,7 @@ package DAO;
 
 import model.Employee;
 
-import java.sql.Connection;
+
 import java.util.List;
 
 public interface EmployeeDAO {

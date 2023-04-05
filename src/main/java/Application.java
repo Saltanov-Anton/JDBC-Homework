@@ -1,4 +1,6 @@
+import DAO.CityDAOImpl;
 import DAO.EmployeeHibernateDAOImpl;
+import model.City;
 import model.Employee;
 
 import java.sql.*;
@@ -13,11 +15,15 @@ public class Application {
 
     private static void taskWithHibernate() {
         EmployeeHibernateDAOImpl employeeDAO = new EmployeeHibernateDAOImpl();
-        Employee employee = new Employee("Tolya", "Ivanov", "m", 44);
+        CityDAOImpl cityDAO = new CityDAOImpl();
+        City city = new City("Chita");
+        Employee employee = new Employee("Misha", "mihailov", "m", 54, city);
+       // cityDAO.getAllCity().forEach(System.out::println);
+    //    cityDAO.saveCity(city);
 
-//        employeeDAO.saveEmployee(employee);
-//
-//        employeeDAO.getAllEmployee().forEach(System.out::println);
+  //      employeeDAO.saveEmployee(employee);
+
+        employeeDAO.getAllEmployee().forEach(System.out::println);
 
 //        Employee employee = employeeDAO.getEmployeeById(12);
 //       System.out.println(employee);

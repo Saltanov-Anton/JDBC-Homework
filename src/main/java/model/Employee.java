@@ -31,13 +31,15 @@ public class Employee implements Serializable{
     @Column(name = "age")
     private int age;
 
-    @Column(name = "city")
-    private Integer cityId;
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    private City city;
 
-    public Employee(String firstName, String lastName, String gender, int age) {
+    public Employee(String firstName, String lastName, String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
+        this.city = city;
     }
 }

@@ -1,21 +1,38 @@
 package model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
-
+@Getter
+@Setter
 @Entity
-@Data
 @NoArgsConstructor
-@Table
+@AllArgsConstructor
+@Table(name ="city")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cityId;
+    @Column(name = "city_id")
+    private Integer cityId;
 
-    @Column
+    @Column(name = "city_name")
     private String cityName;
+
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<Employee> empls;
+
+    public City(String cityName) {
+        this.cityName = cityName;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
+                '}';
+    }
 }
