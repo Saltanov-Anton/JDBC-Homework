@@ -13,21 +13,22 @@ public class Application {
 
     private static void taskWithHibernate() {
         EmployeeHibernateDAOImpl employeeDAO = new EmployeeHibernateDAOImpl();
+        Employee employee = new Employee("Tolya", "Ivanov", "m", 44);
 
-        employeeDAO.saveEmployee(new Employee("Tolya", "Ivanov", "m", 44));
+//        employeeDAO.saveEmployee(employee);
+//
+//        employeeDAO.getAllEmployee().forEach(System.out::println);
 
-        employeeDAO.getAllEmployee().forEach(System.out::println);
-
-        Employee employee = employeeDAO.getEmployeeById(8);
-        System.out.println(employee);
-
-        employeeDAO.editEmployeeById(employee);
-
-        employeeDAO.getAllEmployee().forEach(System.out::println);
-
+//        Employee employee = employeeDAO.getEmployeeById(12);
+//       System.out.println(employee);
+//
+//        employeeDAO.editEmployeeById(employee);
+//
+//        employeeDAO.getAllEmployee().forEach(System.out::println);
+//
         employeeDAO.deleteEmployee(employee);
-
-        employeeDAO.getAllEmployee().forEach(System.out::println);
+//
+//        employeeDAO.getAllEmployee().forEach(System.out::println);
     }
 
     private static Connection getConnection() {
