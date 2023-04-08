@@ -2,18 +2,18 @@ package DAO;
 
 import model.Employee;
 
+
 import java.util.List;
 
 public interface EmployeeDAO {
 
-    void saveEmployee(int id, String first_name, String last_name, String gender, int age);
+    void saveEmployee(Employee employee);
 
     Employee getEmployeeById(int id);
 
     List<Employee> getAllEmployee();
 
-    void editEmployeeById(int id);
+    void editEmployeeById(Employee employee);
 
-    void deleteEmployeeById(int id);
-
+    void deleteEmployee(Employee employee);
 }

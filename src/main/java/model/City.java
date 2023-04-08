@@ -1,47 +1,38 @@
 package model;
 
-import java.util.Objects;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name ="city")
 public class City {
 
-    private int city_id;
-    private String city_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
+    private Integer cityId;
 
-    public City(int city_id, String city_name) {
-        this.city_id = city_id;
-        this.city_name = city_name;
-    }
+    @Column(name = "city_name")
+    private String cityName;
 
-    public int getCity_id() {
-        return city_id;
-    }
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    private List<Employee> empls;
 
-    public String getCity_name() {
-        return city_name;
-    }
-
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        City city = (City) o;
-        return city_id == city.city_id && Objects.equals(city_name, city.city_name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(city_id, city_name);
+    public City(String cityName) {
+        this.cityName = cityName;
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "city_id=" + city_id +
-                ", city_name='" + city_name + '\'' +
+                "cityId=" + cityId +
+                ", cityName='" + cityName + '\'' +
                 '}';
     }
 }
